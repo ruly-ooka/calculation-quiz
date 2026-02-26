@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>四則演算クイズ</title>
+	</head>
+	<body>
+		<h1>計算問題設定</h1>
+		
+		<form th:action="@{/generate-questions}" method="post">
+			<!-- 演算選択 -->
+			<div>
+				<lavel for="operator">計算の種類</lavel>
+				<select id="operator" name="operator">
+					<option value="1">たし算</option>
+					<option value="2">ひき算</option>
+					<option value="3">かけ算</optio>
+					<option value="4">わり算</option>
+				</select>
+			</div>
+			
+			<!-- 問題数選択 -->
+			<div>
+				<label for="count">問題数</label>
+				<select id="count" name="count">
+					<option value="5">5問</option>
+					<option value="10">10問</option>
+					<option value="15">15問</option>
+					<option value="20">20問</option>
+				</select>
+			</div>
+			
+			<button type="submit">問題を作成する</button>
+		</form>
+	</body>
+</html>
