@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuizDto {
+public class QuizDTO {
 	
-	/** 問題 */
-	private String quiz;
-	
-	/** 正答 */
-	private String answer;
+	/** 数字１ */
+	private int num1;
+
+	/** 数字２ */
+	private int num2;
 }
