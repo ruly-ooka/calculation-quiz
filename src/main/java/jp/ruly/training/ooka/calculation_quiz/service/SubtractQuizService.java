@@ -7,14 +7,15 @@ import java.util.stream.IntStream;
 
 import org.springframework.stereotype.Service;
 
+import jp.ruly.training.ooka.calculation_quiz.constant.CalcMode;
 import jp.ruly.training.ooka.calculation_quiz.dto.QuizDTO;
 
 @Service
 public class SubtractQuizService implements QuizService {
 
 	@Override
-	public int getMode() {
-		return QuizService.CalcMode.SUBTRACT.value();
+	public CalcMode getMode() {
+		return CalcMode.SUBTRACT;
 	}
 
 	@Override
@@ -24,6 +25,6 @@ public class SubtractQuizService implements QuizService {
 
 	private QuizDTO generateQuiz() {
 		Random r = new Random();
-		return new QuizDTO(r.nextInt(10), r.nextInt(10));
+		return new QuizDTO(this.getMode(), r.nextInt(10), r.nextInt(10));
 	}
 }
