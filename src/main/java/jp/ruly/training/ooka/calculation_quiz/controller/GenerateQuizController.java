@@ -1,4 +1,4 @@
-package jp.ruly.training.ooka.calculation_quiz.contoller;
+package jp.ruly.training.ooka.calculation_quiz.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.ruly.training.ooka.calculation_quiz.constant.CalcMode;
 import jp.ruly.training.ooka.calculation_quiz.dto.QuizDTO;
 import jp.ruly.training.ooka.calculation_quiz.service.QuizService;
 
 @Controller
 public class GenerateQuizController {
 
-	private final Map<Integer, QuizService> serviceMap;
+	private final Map<CalcMode, QuizService> serviceMap;
 
 	public GenerateQuizController(List<QuizService> services) {
 		this.serviceMap = services.stream().collect(Collectors.toMap(QuizService::getMode, x -> x));
@@ -24,17 +25,18 @@ public class GenerateQuizController {
 
 	@GetMapping("/init")
 	public String init() {
-		return "index.html";
+		return "index";
 	}
 
 	@PostMapping("/generate-questions")
-	public String generate(Model model, @RequestParam("mode") int mode, @RequestParam("count") int count) {
-		QuizService service = serviceMap.get(mode);
+	public String generate(Model model, @RequestParam int mode, @RequestParam int count) {
+		CalcMode calcMode = CalcMode.fromValue(mode);
+		QuizService service = serviceMap.get(calcMode);
 		List<QuizDTO> quizzes = service.generateQuiz(count);
-		
-		model.addAttribute("mode", mode);
+
+		model.addAttribute("mode", calcMode);
 		model.addAttribute("quizzes", quizzes);
 
-		return "add.html";
+		return "quiz";
 	}
 }

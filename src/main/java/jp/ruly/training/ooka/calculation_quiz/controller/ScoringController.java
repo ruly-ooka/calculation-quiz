@@ -1,4 +1,4 @@
-package jp.ruly.training.ooka.calculation_quiz.contoller;
+package jp.ruly.training.ooka.calculation_quiz.controller;
 
 import org.springframework.stereotype.Controller;
 
