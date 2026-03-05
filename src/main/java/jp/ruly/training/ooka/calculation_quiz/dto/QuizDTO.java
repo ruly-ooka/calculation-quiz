@@ -4,18 +4,26 @@ import jp.ruly.training.ooka.calculation_quiz.constant.CalcMode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class QuizDTO {
-	
+
 	/** 計算の種類 */
+	@lombok.NonNull
 	private CalcMode calcMode;
-	
+
 	/** 数字１ */
-	private int num1;
+	@lombok.NonNull
+	private Integer num1;
 
 	/** 数字２ */
-	private int num2;
+	@lombok.NonNull
+	private Integer num2;
+
+	/** ユーザーの回答 */
+	private Integer userAnswer;
 }

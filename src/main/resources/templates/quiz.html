@@ -4,15 +4,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>[[${mode.name}]]</title>
+	<style>
+		.quiz {
+			border: none;
+			text-align: center;
+			width: 2em;
+		}
+	</style>
 </head>
 <body>
 	<h1>[[${mode.name}]]</h1>
 	<div>
-		<form th:action="@{/scoring}" method="post">
+		<form th:action="@{/scoring}" th:object="${quizForm}" method="post">
 			<hidden name="mode" value="${mode.value}" />
 			<ul style="list-style: none;">
-				<li th:each="quiz, stat : ${quizzes}">
-					[[${stat.count}]]． [[${quiz.num1}]] [[${mode.operator}]] [[${quiz.num2}]] ＝ <input type="text" name="ans${stat.count}" size="2" maxlength="5" />
+				<li th:each="quiz, stat : *{quizzes}">
+					[[${stat.count}]]．
+					<input class="quiz" th:field="*{quizzes[__${stat.index}__].num1}" />
+					[[${mode.operator}]]
+					<input class="quiz" th:field="*{quizzes[__${stat.index}__].num2}" />
+					＝
+					<input type="text" th:field="*{quizzes[__${stat.index}__].userAnswer}" size="2" maxlength="5" />
+					<input type="hidden" th:field="*{quizzes[__${stat.index}__].calcMode}" />
 				</li>
 			</ul>
 			<button type="submit">採点</button>

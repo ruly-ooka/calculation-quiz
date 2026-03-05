@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.ruly.training.ooka.calculation_quiz.constant.CalcMode;
 import jp.ruly.training.ooka.calculation_quiz.dto.QuizDTO;
+import jp.ruly.training.ooka.calculation_quiz.form.QuizForm;
 import jp.ruly.training.ooka.calculation_quiz.service.QuizService;
 
 @Controller
@@ -33,9 +34,10 @@ public class GenerateQuizController {
 		CalcMode calcMode = CalcMode.fromValue(mode);
 		QuizService service = serviceMap.get(calcMode);
 		List<QuizDTO> quizzes = service.generateQuiz(count);
+		QuizForm quizForm = new QuizForm(quizzes);
 
 		model.addAttribute("mode", calcMode);
-		model.addAttribute("quizzes", quizzes);
+		model.addAttribute("quizForm", quizForm);
 
 		return "quiz";
 	}
