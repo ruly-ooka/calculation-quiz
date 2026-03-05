@@ -25,6 +25,7 @@ public class SubtractQuizService implements QuizService {
 
 	private QuizDTO generateQuiz() {
 		Random r = new Random();
-		return new QuizDTO(this.getMode(), r.nextInt(10), r.nextInt(10));
+		int num1 = r.nextInt(10);
+		return new QuizDTO(this.getMode(), num1, r.nextInt(num1 + 1));
 	}
 }
