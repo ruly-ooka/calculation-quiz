@@ -1,6 +1,5 @@
 package jp.ruly.training.ooka.calculation_quiz.dto;
 
-import jp.ruly.training.ooka.calculation_quiz.constant.CalcMode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +10,6 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class QuizDTO {
-
-	/** 計算の種類 */
-	@lombok.NonNull
-	private CalcMode calcMode;
 
 	/** 数字１ */
 	@lombok.NonNull

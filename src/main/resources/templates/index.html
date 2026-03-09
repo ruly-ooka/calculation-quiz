@@ -10,12 +10,9 @@
 		<form th:action="@{/generate-questions}" method="post">
 			<!-- 演算選択 -->
 			<div>
-				<lavel for="mode">計算の種類</lavel>
+				<label for="mode">計算の種類</label>
 				<select id="mode" name="mode">
-					<option value="1">たし算</option>
-					<option value="2">ひき算</option>
-					<option value="3">かけ算</optio>
-					<option value="4">わり算</option>
+					<option th:each="mode, stat : *{modes}" th:value="*{mode.name}" th:text=*{mode.label}></option>
 				</select>
 			</div>
 			

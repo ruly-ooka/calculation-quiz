@@ -13,10 +13,10 @@
 	</style>
 </head>
 <body>
-	<h1>[[${mode.name}]]</h1>
+	<h1>[[${mode.label}]]</h1>
 	<div>
 		<form th:action="@{/scoring}" th:object="${quizForm}" method="post">
-			<hidden name="mode" value="${mode.value}" />
+			<input type="hidden" name="mode" th:value="*{mode.name}" />
 			<ul style="list-style: none;">
 				<li th:each="quiz, stat : *{quizzes}">
 					[[${stat.count}]]．
@@ -25,7 +25,6 @@
 					<input class="quiz" th:field="*{quizzes[__${stat.index}__].num2}" />
 					＝
 					<input type="text" th:field="*{quizzes[__${stat.index}__].userAnswer}" size="2" maxlength="5" />
-					<input type="hidden" th:field="*{quizzes[__${stat.index}__].calcMode}" />
 				</li>
 			</ul>
 			<button type="submit">採点</button>
